@@ -1,0 +1,40 @@
+####  PROGRAM PARAMETERS  ####
+backend = CPU #can be CPU or CUDA (for Nvidia GPU)
+backend_precision = double #double for CPU; mixed for CUDA
+seed = 42 #random seed; obvs be careful if doing parallel computing!
+
+####    SIM PARAMETERS    ####
+sim_type = VMMC 
+#Virtual move Monte Carlo. 
+#Can me MC (Monte Carlo), or MD (Molecular Dynamics).
+#Virtual Move Monte Carlo is a variant of conventional Monte Carlo, and it proposes moves by identifying clusters that move together (e.g. clusters of particles in a Lennard Jones fluid), and moves them all at the same time. Maybe faster then MC for polymer simulation... but there are subtleties...
+
+ensemble = NVT
+#You don't have a choice here: the only function ensemble is N (particle number fixed), V (volume fixed), T (temperature fixed).
+steps = 5e4
+delta_translation = 0.22
+#size of translational move; adjust until acceptance prob is about 0.5
+delta_rotation = 0.22
+#size of rotational move; adjust until acceptance prob is about 0.5
+T = 25C
+verlet_skin = 1.00 
+#something related to a verlet adjacency list that doesn't actually matter here
+umbrella_sampling = 0
+#are we doing biased monte carlo?
+
+### Seq. Dependence ##########
+use_average_seq = 1
+#can either use averaged sequence parameters, or sequence specific parameters, in which case a parameterization must also be provided
+small_system = 1 
+#uses naive O(n^2) neighbour search; will be SLOW if you have more than like 10 particles.
+#turn it off if you have more then 10 particles.
+####    INPUT / OUTPUT    ####
+topology = generated.top #strand connectedness
+conf_file = generated.dat #configuration 
+trajectory_file = trajectory.dat #output trajectory
+no_stdout_energy = 0
+restart_step_counter = 1
+energy_file = energy.dat #output of energy
+print_conf_interval = 2e3 #interval in timesteps between writing configuration
+print_energy_every = 1e3 #same for energy
+time_scale = linear #leave as is!
