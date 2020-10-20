@@ -129,10 +129,10 @@ Have a look at the input file. You can see that there are some additional input 
 This commands are:
 
 1. `umbrella_sampling = 1` turns umbrella sampling on
-2. `op_file = op.txt`  #the file that defines the order parameter
-3. `weights_file = wfile.txt` #the file that defines the artificial biases.
-4. `safe_weights = 0` # I will talk about this later.
-5. `default_weight = 0` # same
+2. `op_file = op.txt`  the file that defines the order parameter
+3. `weights_file = wfile.txt` the file that defines the artificial biases.
+4. `safe_weights = 0` needed if you're going to assign default weights
+5. `default_weight = 0` if I don't mention an order parameter value, assume it's zero
 
 In the directory is a file called `op.txt`, which contains the order parmeter information. For the bonding, I have added all the different complementary bonds in the system I care about. In the mindistance, I have added the same, but also added some interfaces. Since the oxDNA biasing support just uses square wells, we need to fine some way of discretizing the space. Note that mindistance means the minimum distance over all pairs mentioned here. Similarly the number of bonds means the total number -- obviously there are four different ways to get three bonds (so you may think about what that means  for the configurational entropy as a function of number of bonds...)
 
