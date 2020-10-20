@@ -1,4 +1,4 @@
-Free energy of hairpin formation
+# Free energy of hairpin formation
 
 ## Introduction
 
@@ -13,7 +13,7 @@ This tutorial is designed to introduce free energy calculation using the oxDNA2 
 5. cross stacking
 6. hydrogen bonding 
 
-The values of the interaction parameters were taken from a variety of experiments, including: structural information (i.e. B form DNA crystals), thermodynamic information (agreement with the Santa-Lucia 1998 parameters for nearest a DNA thermodynamics), and some information relating to the angle of DNA origami.  
+The values of the interaction parameters were taken from a variety of experiments, including: structural information (i.e. B form DNA crystals), thermodynamic information (agreement with the Santa-Lucia 1998 parameters for nearest neighbours DNA thermodynamics), and some information relating to the angle of DNA origami.  
 
 The dynamics of the model are *confusing*, but since we will be running only Monte Carlo simulations, we don't have to worry about them at all.
 
@@ -166,7 +166,7 @@ The first bias was a bit rough, and led to probably inefficient sampling. With t
 
 ## Automated approaches
 
-It seems like the job of choosing the correct bias could be automated. There are various techniques for doing this -- the grown up way to do this is either Wang-Landau sampling, or Metadynamics. If you have a very big and complicated transition path, you could also do umbrella sampling, where you look at free energy differences between tiny bits of the reaction coordinate with separate simulations, then stitch them all together. There's a book by Dan Frenkel on my desk you're welcome to borrow. This goes over everything.
+It seems like the job of choosing the correct bias could be automated. There are various techniques for doing this -- the grown up way to do this is either Wang-Landau sampling, or Metadynamics. If you have a very big and complicated transition path, you could also do umbrella sampling, where you look at free energy differences between tiny bits of the reaction coordinate with separate simulations, then stich them all together. There's a book by Dan Frenkel on my desk you're welcome to borrow. This goes over everything.
 
 ## Extension
 
