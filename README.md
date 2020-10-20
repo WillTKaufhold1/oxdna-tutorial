@@ -17,6 +17,8 @@ The values of the interaction parameters were taken from a variety of experiment
 
 The dynamics of the model are *confusing*, but since we will be running only Monte Carlo simulations, we don't have to worry about them at all.
 
+NOTE: I'm using the oxDNA force field here. But there's actually an oxDNA2 force field that's a bit more realistic. To run using the oxDNA2 force field, use `interaction_type=DNA2`, and `salt_concentration=0.5` in your input file.
+
 ### Implementation
 
 oxDNA is implemented in custom C++ with CUDA support for GPUs. Installation of the CUDA support is a tiny bit tricky, but we'll (probably) be doing just Monte Carlo simulations, so we won't need GPU support. 
@@ -72,11 +74,11 @@ It has a line for time step, box size, energy (the triple of internal energy, ki
 Then it has a load of lines of 15 space separated floats.
 These correspond to:
 
-(a) x,y,z of center of mass
-(b) phosphate-to-base vector (they call this a versor)
-(c) vector which points along the spine of the DNA helix (i.e. normal to the base)
-(d) vx, vy, vz center of mass velocity
-(e) angular momentum as a three vector
+1. x,y,z of center of mass
+2. phosphate-to-base vector (they call this a versor)
+3. vector which points along the spine of the DNA helix (i.e. normal to the base)
+4. vx, vy, vz center of mass velocity
+5. angular momentum as a three vector
 
 ### Running a basic simulation
 
@@ -126,11 +128,11 @@ Have a look at the input file. You can see that there are some additional input 
 
 This commands are:
 
-(1) `umbrella_sampling = 1 #turns umbrella sampling on`
-(2) `op_file = op.txt #the file that defines the order parameter`
-(3) `weights_file = wfile.txt #the file that defines the artificial biases.`
-(4) `safe_weights = 0 # I will talk about this later.`
-(5) `default_weight = 0 # same`
+(1) `umbrella_sampling = 1` turns umbrella sampling on
+(2) `op_file = op.txt`  #the file that defines the order parameter
+(3) `weights_file = wfile.txt` #the file that defines the artificial biases.
+(4) `safe_weights = 0` # I will talk about this later.
+(5) `default_weight = 0` # same
 
 In the directory is a file called `op.txt`, which contains the order parmeter information. For the bonding, I have added all the different complementary bonds in the system I care about. In the mindistance, I have added the same, but also added some interfaces. Since the oxDNA biasing support just uses square wells, we need to fine some way of discretizing the space. Note that mindistance means the minimum distance over all pairs mentioned here. Similarly the number of bonds means the total number -- obviously there are four different ways to get three bonds (so you may think about what that means  for the configurational entropy as a function of number of bonds...)
 
